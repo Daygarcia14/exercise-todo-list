@@ -6,7 +6,6 @@ const Home = () => {
 	const [task, setTask] = useState("");
 	const [taskList, setTaskList] = useState([]);
 	const [error, setError] = useState(false);
-	const [contador, setcontador] = useState("");
 
 	const handleChangeTask = (event) => {
 		setTask(event.target.value);
@@ -17,7 +16,6 @@ const Home = () => {
 			setTaskList([...taskList, task]);
 			setTask("");
 			setError(false);
-			setcontador(taskList.length + 1);
 		} else {
 			setError(true);
 		}
@@ -25,8 +23,6 @@ const Home = () => {
 
 	const handleDelete = (id) => {
 		let newListTask = taskList.filter((item, index) => index != id);
-
-		setcontador(newListTask.length);
 		setTaskList(newListTask);
 	};
 	return (
@@ -66,11 +62,7 @@ const Home = () => {
 							taskList={taskList}
 							handleDelete={handleDelete}
 						/>
-						{contador != 0 && (
-							<div className="mt-2 contador">
-								{contador} items left
-							</div>
-						)}
+						{`${taskList.length} item left`}
 					</div>
 				</div>
 			</div>
